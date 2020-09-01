@@ -1,0 +1,39 @@
+<div class="container-fluid"><br>   
+    <div class="card" style="width:22rem">
+      <div class="card-body">
+        <h5 class="card-title" style="color: primary">Sign In</h5>
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" novalidate>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Username</label>
+            <input name="name" class="form-control" type="text" ngModel required #first="ngModel">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input required minlength="4" class="form-control" name="password" type="password" #last="ngModel" ngModel>
+          </div>
+          <button type="submit" class="btn btn-primary">Sign In</button>
+        </form>
+        <br>
+        <div>
+          Username - <mark>test</mark>
+          Password - <mark>test@123</mark>
+        </div>
+        <div *ngIf="loginForm.invalid && (first.dirty || first.touched)">
+          <div *ngIf="first.errors?.required">
+            Name is required.
+          </div>
+          <div *ngIf="first.errors?.minlength">
+            Name must be at least 4 characters long.
+          </div>
+       </div>
+        <div *ngIf="loginForm.invalid && (last.dirty || last.touched)">
+          <div *ngIf="last.errors?.required">
+            Password is required.
+          </div>
+          <div *ngIf="last.errors?.minlength">
+            Passowrd must be at least 4 characters long.
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
